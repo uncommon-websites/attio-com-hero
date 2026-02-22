@@ -3,331 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Attio - The AI CRM for GTM</title>
+    <title>Attio - Customer relationship magic</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        gray: {
-                            50: '#f9fafb',
-                            100: '#f3f4f6',
-                            200: '#e5e7eb',
-                            300: '#d1d5db',
-                            400: '#9ca3af',
-                            500: '#6b7280',
-                            600: '#4b5563',
-                            700: '#374151',
-                            800: '#1f2937',
-                            900: '#111827',
-                        }
-                    },
-                    boxShadow: {
-                        'xs': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
-                        'xl': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-                    }
-                }
-            }
-        }
-    </script>
-
     <style>
-        /* Typography Utilities */
-        .text-balance { text-wrap: balance; }
-        .text-pretty { text-wrap: pretty; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-        /* Animation keyframes */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-                filter: blur(4px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-                filter: blur(0);
-            }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-
         @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.98);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
         }
 
-        /* Base animation classes */
         .animate-fade-in-up {
             opacity: 0;
-            animation: fadeInUp 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-
         .animate-fade-in {
             opacity: 0;
-            animation: fadeIn 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+            animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-
         .animate-scale-in {
             opacity: 0;
-            animation: scaleIn 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+            animation: scaleIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* Staggered delays */
         .delay-0 { animation-delay: 0ms; }
         .delay-100 { animation-delay: 100ms; }
         .delay-200 { animation-delay: 200ms; }
         .delay-300 { animation-delay: 300ms; }
         .delay-400 { animation-delay: 400ms; }
         .delay-500 { animation-delay: 500ms; }
-        .delay-700 { animation-delay: 700ms; }
+        .delay-600 { animation-delay: 600ms; }
 
-        /* Custom Scrollbar for the mock UI */
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background-color: #e5e7eb;
-            border-radius: 20px;
-        }
+        .text-balance { text-wrap: balance; }
+        .text-pretty { text-wrap: pretty; }
 
         @media (prefers-reduced-motion: reduce) {
-            .animate-fade-in-up,
-            .animate-fade-in,
-            .animate-scale-in {
+            .animate-fade-in-up, .animate-fade-in, .animate-scale-in {
                 animation: none;
                 opacity: 1;
                 transform: none;
-                filter: none;
             }
         }
     </style>
 </head>
-<body class="bg-white font-sans text-gray-900 antialiased overflow-x-hidden">
+<body class="bg-white text-gray-900 overflow-x-hidden">
 
     <!-- Navigation -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 animate-fade-in delay-0">
-        <nav class="mx-auto flex max-w-[1400px] items-center justify-between p-4 lg:px-8" aria-label="Global">
-            <div class="flex lg:flex-1">
-                <a href="#" class="-m-1.5 p-1.5 flex items-center gap-2">
-                    <!-- Logo SVG -->
-                    <svg class="h-8 w-auto text-gray-900" viewBox="0 0 106 28" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M16.24 2.88001L9.60004 14.4H22.88L16.24 2.88001ZM16.24 0.110016L29.52 23.15H22.88L19.56 17.39H12.92L9.60004 23.15H2.96002L16.24 0.110016Z" fill="black"/>
-                        <path d="M37.4 23.15H42.68V14.63H47.72V23.15H53V9.59003H47.72V10.31H42.68V9.59003H37.4V23.15ZM45.2 4.31003C46.9673 4.31003 48.4 2.87734 48.4 1.11002C48.4 -0.657303 46.9673 -2.09003 45.2 -2.09003C43.4327 -2.09003 42 -0.657303 42 1.11002C42 2.87734 43.4327 4.31003 45.2 4.31003Z" fill="black"/>
-                        <path d="M60.92 23.15H66.2V14.63H71.24V23.15H76.52V9.59003H71.24V10.31H66.2V9.59003H60.92V23.15ZM68.72 4.31003C70.4873 4.31003 71.92 2.87734 71.92 1.11002C71.92 -0.657303 70.4873 -2.09003 68.72 -2.09003C66.9527 -2.09003 65.52 -0.657303 65.52 1.11002C65.52 2.87734 66.9527 4.31003 68.72 4.31003Z" fill="black"/>
-                        <path d="M84.44 23.15H89.72V9.59003H84.44V23.15ZM87.08 4.31003C88.8473 4.31003 90.28 2.87734 90.28 1.11002C90.28 -0.657303 88.8473 -2.09003 87.08 -2.09003C85.3127 -2.09003 83.88 -0.657303 83.88 1.11002C83.88 2.87734 85.3127 4.31003 87.08 4.31003Z" fill="black"/>
-                        <path d="M97.64 23.51C102.279 23.51 106.04 19.7492 106.04 15.11C106.04 10.4708 102.279 6.71002 97.64 6.71002C93.0008 6.71002 89.24 10.4708 89.24 15.11C89.24 19.7492 93.0008 23.51 97.64 23.51ZM97.64 19.19C95.3867 19.19 93.56 17.3633 93.56 15.11C93.56 12.8567 95.3867 11.03 97.64 11.03C99.8933 11.03 101.72 12.8567 101.72 15.11C101.72 17.3633 99.8933 19.19 97.64 19.19Z" fill="black"/>
-                        <!-- Simple text fallback if paths fail, but paths are cleaner -->
-                        <text x="35" y="22" font-family="Inter, sans-serif" font-weight="bold" font-size="24" fill="black" class="hidden">attio</text>
-                    </svg>
-                </a>
-            </div>
-            <div class="hidden lg:flex lg:gap-x-8">
-                <button type="button" class="flex items-center gap-x-1 text-sm font-medium leading-6 text-gray-600 hover:text-gray-900">
-                    Platform
-                    <svg class="h-4 w-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-                    </svg>
-                </button>
-                <button type="button" class="flex items-center gap-x-1 text-sm font-medium leading-6 text-gray-600 hover:text-gray-900">
-                    Resources
-                    <svg class="h-4 w-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-                    </svg>
-                </button>
-                <a href="#" class="text-sm font-medium leading-6 text-gray-600 hover:text-gray-900">Customers</a>
-                <a href="#" class="text-sm font-medium leading-6 text-gray-600 hover:text-gray-900">Pricing</a>
-            </div>
-            <div class="flex flex-1 items-center justify-end gap-x-4">
-                <a href="#" class="hidden lg:block text-sm font-medium leading-6 text-gray-900 px-4 py-2 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors">Sign in</a>
-                <a href="#" class="text-sm font-medium leading-6 text-white bg-gray-900 px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors shadow-sm">Start for free</a>
-            </div>
-        </nav>
-    </header>
-
-    <main class="isolate pt-24 lg:pt-32">
-        <!-- Hero Content -->
-        <div class="mx-auto max-w-7xl px-6 lg:px-8 text-center">
+    <nav class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md z-50 transition-all duration-300 animate-fade-in delay-0">
+        <div class="max-w-[1440px] mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
             
-            <!-- Pill Badge -->
-            <div class="animate-fade-in-up delay-100 mb-8 flex justify-center">
-                <a href="#" class="inline-flex items-center gap-x-2 rounded-full border border-gray-200 bg-white px-4 py-1.5 text-sm font-medium text-gray-600 shadow-xs hover:bg-gray-50 transition-colors">
-                    Meet the Developer Platform, now with MCP
-                    <svg class="h-4 w-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-                    </svg>
+            <!-- Left: Logo & Links -->
+            <div class="flex items-center gap-10">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
+                    <div class="w-[22px] h-[22px] bg-gray-900 rounded-[4px] skew-x-[-15deg]"></div>
+                    <span class="text-[26px] font-bold tracking-tight text-gray-900 mt-0.5">attio</span>
+                </a>
+
+                <!-- Desktop Links -->
+                <div class="hidden lg:flex items-center gap-8">
+                    <button class="flex items-center gap-1.5 text-[15px] font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                        Platform
+                        <svg class="w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <button class="flex items-center gap-1.5 text-[15px] font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                        Resources
+                        <svg class="w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <a href="#" class="text-[15px] font-medium text-gray-600 hover:text-gray-900 transition-colors">Customers</a>
+                    <a href="#" class="text-[15px] font-medium text-gray-600 hover:text-gray-900 transition-colors">Pricing</a>
+                </div>
+            </div>
+
+            <!-- Right: Auth Buttons -->
+            <div class="flex items-center gap-4">
+                <a href="#" class="hidden md:block text-[15px] font-medium text-gray-700 hover:text-gray-900 transition-colors px-4 py-2 border border-gray-200 rounded-lg hover:bg-gray-50">
+                    Sign in
+                </a>
+                <a href="#" class="text-[15px] font-medium bg-gray-900 text-white px-5 py-2.5 rounded-lg hover:bg-gray-800 transition-all duration-200 active:scale-95">
+                    Start for free
                 </a>
             </div>
+        </div>
+    </nav>
+
+    <!-- Main Hero Section -->
+    <main class="pt-32 pb-0">
+        
+        <!-- Hero Content -->
+        <section class="max-w-[1000px] mx-auto px-6 text-center flex flex-col items-center pt-10 pb-16">
+            
+            <!-- Announcement Badge -->
+            <a href="#" class="animate-fade-in-up delay-100 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gray-200 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors mb-8 shadow-sm">
+                Meet the Developer Platform, now with MCP
+                <svg class="w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </a>
 
             <!-- Headline -->
-            <h1 class="animate-fade-in-up delay-200 mx-auto max-w-4xl text-5xl font-bold tracking-tight text-gray-900 sm:text-6xl lg:text-[5rem] leading-[1.1] text-balance">
-                Customer <br class="hidden sm:block" /> relationship magic.
+            <h1 class="animate-fade-in-up delay-200 text-5xl md:text-7xl lg:text-[84px] font-extrabold tracking-[-0.03em] text-gray-900 leading-[1.05] text-balance mb-6">
+                Customer<br />relationship magic.
             </h1>
 
             <!-- Subheadline -->
-            <p class="animate-fade-in-up delay-300 mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-500 text-pretty font-medium">
+            <p class="animate-fade-in-up delay-300 text-xl md:text-[22px] text-gray-500 font-medium text-pretty mb-10">
                 Attio is the AI CRM for GTM.
             </p>
 
-            <!-- CTA Buttons -->
-            <div class="animate-fade-in-up delay-400 mt-10 flex items-center justify-center gap-x-4">
-                <a href="#" class="rounded-lg bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 transition-all">
+            <!-- CTAs -->
+            <div class="animate-fade-in-up delay-400 flex flex-col sm:flex-row items-center gap-4">
+                <a href="#" class="w-full sm:w-auto text-base font-medium bg-gray-900 text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-all duration-200 active:scale-95">
                     Start for free
                 </a>
-                <a href="#" class="rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 transition-all">
+                <a href="#" class="w-full sm:w-auto text-base font-medium bg-white text-gray-900 border border-gray-200 px-6 py-3 rounded-lg hover:bg-gray-50 transition-all duration-200 active:scale-95">
                     Talk to sales
                 </a>
             </div>
-        </div>
+        </section>
 
-        <!-- Feature Tabs & UI Mockup Section -->
-        <div class="mt-20 lg:mt-24 animate-fade-in-up delay-500">
+        <!-- Tabs & UI Mockup Section -->
+        <section class="w-full relative mt-4">
             
-            <!-- Tabs -->
-            <div class="border-y border-gray-100 bg-white sticky top-[73px] z-40">
-                <div class="mx-auto max-w-7xl px-6 lg:px-8">
-                    <div class="grid grid-cols-2 md:grid-cols-4 text-center">
-                        <div class="relative py-5 cursor-pointer group">
-                            <span class="text-sm font-semibold text-gray-900">Ask Attio</span>
-                            <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-gray-900"></div>
-                        </div>
-                        <div class="relative py-5 cursor-pointer group hover:bg-gray-50 transition-colors">
-                            <span class="text-sm font-medium text-gray-500 group-hover:text-gray-900">Data model</span>
-                        </div>
-                        <div class="relative py-5 cursor-pointer group hover:bg-gray-50 transition-colors">
-                            <span class="text-sm font-medium text-gray-500 group-hover:text-gray-900">Workflows</span>
-                        </div>
-                        <div class="relative py-5 cursor-pointer group hover:bg-gray-50 transition-colors">
-                            <span class="text-sm font-medium text-gray-500 group-hover:text-gray-900">Reporting</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- Full width dashed line top -->
+            <div class="absolute top-0 left-0 w-full border-t border-dashed border-gray-200"></div>
 
-            <!-- UI Mockup Container -->
-            <div class="bg-white pt-10 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-                <div class="mx-auto max-w-[1200px] rounded-xl border border-gray-200 bg-white shadow-xl overflow-hidden animate-scale-in delay-700 h-[600px] md:h-[700px] flex">
+            <!-- Tabs Container -->
+            <div class="w-full border-b border-dashed border-gray-200 overflow-x-auto">
+                <div class="min-w-[800px] max-w-[1080px] mx-auto grid grid-cols-4 border-x border-dashed border-gray-200 animate-fade-in-up delay-500">
                     
-                    <!-- Sidebar -->
-                    <div class="w-[260px] bg-[#f9fafb] border-r border-gray-200 flex-shrink-0 hidden md:flex flex-col">
-                        <!-- Sidebar Header -->
-                        <div class="p-4 flex items-center justify-between">
-                            <div class="flex items-center gap-2">
-                                <div class="h-6 w-6 rounded bg-gray-900 flex items-center justify-center text-white text-xs font-bold">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-                                </div>
-                                <span class="text-sm font-semibold text-gray-900">Basepoint</span>
-                            </div>
-                            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </div>
+                    <!-- Active Tab -->
+                    <button class="relative py-5 text-center text-[15px] font-medium text-gray-900 bg-gray-50 border-r border-dashed border-gray-200 transition-colors">
+                        Ask Attio
+                        <!-- Active Indicator Line -->
+                        <div class="absolute -bottom-[1px] left-1/2 -translate-x-1/2 w-24 h-[2px] bg-gray-900"></div>
+                    </button>
 
-                        <!-- Quick Actions -->
-                        <div class="px-3 mb-2">
-                            <div class="flex items-center gap-2 px-2 py-1.5 bg-white border border-gray-200 rounded-md shadow-sm text-gray-500 text-xs">
-                                <div class="h-4 w-4 border border-gray-300 rounded flex items-center justify-center text-[10px] font-medium">K</div>
-                                <span>Quick Actions</span>
-                                <div class="ml-auto flex items-center gap-1">
-                                    <span class="px-1 py-0.5 border border-gray-200 rounded bg-gray-50 text-[10px]">⌘K</span>
-                                </div>
-                            </div>
-                        </div>
+                    <!-- Inactive Tabs -->
+                    <button class="py-5 text-center text-[15px] font-medium text-gray-500 hover:text-gray-900 border-r border-dashed border-gray-200 transition-colors bg-white">
+                        Data model
+                    </button>
+                    <button class="py-5 text-center text-[15px] font-medium text-gray-500 hover:text-gray-900 border-r border-dashed border-gray-200 transition-colors bg-white">
+                        Workflows
+                    </button>
+                    <button class="py-5 text-center text-[15px] font-medium text-gray-500 hover:text-gray-900 transition-colors bg-white">
+                        Reporting
+                    </button>
+                </div>
+            </div>
 
-                        <!-- Menu Items -->
-                        <div class="flex-1 overflow-y-auto px-2 py-2 space-y-0.5">
-                            <div class="flex items-center gap-3 px-2 py-1.5 text-sm font-medium text-gray-700 bg-gray-200/50 rounded-md">
-                                <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-                                Home
-                            </div>
-                            <div class="flex items-center gap-3 px-2 py-1.5 text-sm font-medium text-gray-600 hover:bg-gray-100 rounded-md">
-                                <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
-                                Notifications
-                            </div>
-                            <div class="flex items-center gap-3 px-2 py-1.5 text-sm font-medium text-gray-600 hover:bg-gray-100 rounded-md">
-                                <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
-                                Tasks
-                            </div>
-                            <div class="flex items-center gap-3 px-2 py-1.5 text-sm font-medium text-gray-600 hover:bg-gray-100 rounded-md">
-                                <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                                Notes
-                            </div>
-                            <div class="flex items-center gap-3 px-2 py-1.5 text-sm font-medium text-gray-600 hover:bg-gray-100 rounded-md">
-                                <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                                Emails
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Main Content Area -->
-                    <div class="flex-1 flex flex-col bg-white">
-                        <!-- Header -->
-                        <div class="h-14 border-b border-gray-100 flex items-center justify-between px-6">
-                            <div class="flex items-center gap-2">
-                                <span class="text-sm font-semibold text-gray-900">Win deal with Greenleaf</span>
-                                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg>
-                            </div>
-                            <div class="flex items-center gap-4 text-gray-400">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path></svg>
-                            </div>
-                        </div>
-
-                        <!-- Chat Area -->
-                        <div class="flex-1 p-8 flex flex-col gap-8">
-                            <!-- User Message -->
-                            <div class="flex justify-end">
-                                <div class="bg-gray-100 text-gray-800 px-4 py-2 rounded-2xl rounded-tr-sm text-sm font-medium max-w-md">
-                                    How do I win my deal with Greenleaf?
-                                </div>
-                            </div>
-
-                            <!-- AI Response -->
-                            <div class="flex gap-4 max-w-2xl">
-                                <!-- AI Avatar Placeholder -->
-                                <div class="flex-shrink-0 mt-1">
-                                    <div class="w-6 h-6 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                                        <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"></path></svg>
-                                    </div>
-                                </div>
-                                <div class="space-y-4">
-                                    <p class="text-sm text-gray-900 leading-relaxed">
-                                        Based on the deal details, here's a targeted strategy to win the Greenleaf deal:
-                                    </p>
-                                    
-                                    <div class="space-y-2">
-                                        <h4 class="text-sm font-semibold text-gray-900">Strategy to win Greenleaf</h4>
-                                        <div class="flex items-center gap-1 text-sm text-gray-900">
-                                            <span class="font-medium">Deal context:</span>
-                                            <span class="w-0.5 h-4 bg-blue-500 animate-pulse"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <!-- UI Mockup -->
+            <div class="w-full pb-24 overflow-x-auto">
+                <div class="min-w-[800px] max-w-[1080px] mx-auto border-x border-dashed border-gray-200">
+                    <div class="animate-scale-in delay-600 w-full bg-white">
+                        <img 
+                            src="https://placehold.co/1080x640/ffffff/e5e7eb?text=Attio+Dashboard+UI+Mockup\n(Sidebar,+List+View,+Ask+Attio+Panel)" 
+                            alt="Attio Dashboard Interface" 
+                            class="w-full h-auto block"
+                        />
                     </div>
                 </div>
             </div>
-        </div>
+
+        </section>
     </main>
 
 </body>
